@@ -142,4 +142,103 @@ contract SwordNft is ERC721 {
         uint8 defence; 
     }
 
-    
+    constructor() ERC721("Sword", "SWORD") {}
+
+    function uint2str(uint _i) internal pure returns (string memory _uintAsString) {
+        if (_i == 0) {
+            return "0";
+        }
+        uint j = _i;
+        uint len;
+        while (j != 0) {
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint k = len;
+        while (_i != 0) {
+            k = k-1;
+            uint8 temp = (48 + uint8(_i - _i / 10 * 10));
+            bytes1 b1 = bytes1(temp);
+            bstr[k] = b1;
+            _i /= 10;
+        }
+        return string(bstr);
+    }
+
+    function _burn(uint256 tokenId) internal override(ERC721) {
+        super._burn(tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+    function mint(
+        address to, 
+        uint256 tokenId, 
+        string memory _name, 
+        string memory _material, 
+        uint8 _speed, 
+        uint8 _attack, 
+        uint8 _defence) 
+    public {
+        _safeMint(to, tokenId);
+        attributes[tokenId] = Attr(_name, _material, _speed, _attack, _defence);
+    }
+
+    function concatenateStrings(string memory str1, string memory str2, string memory str3) public pure returns (string memory) {
+        bytes memory str1Bytes = bytes(str1);
+        bytes memory str2Bytes = bytes(str2);
+        bytes memory str3Bytes = bytes(str3);
+
+        uint totalLength = str1Bytes.length + str2Bytes.length + str3Bytes.length;
+        bytes memory result = new bytes(totalLength);
+
+        uint currentIndex = 0;
+
+        for (uint i = 0; i < str1Bytes.length; i++) {
+            result[currentIndex] = str1Bytes[i];
+            currentIndex++;
+        }
+
+        for (uint i = 0; i < str2Bytes.length; i++) {
+            result[currentIndex] = str2Bytes[i];
+            currentIndex++;
+        }
+
+        for (uint i = 0; i < str3Bytes.length; i++) {
+            result[currentIndex] = str3Bytes[i];
+            currentIndex++;
+        }
+
+        return string(result);
+    }
+
+    function getSvg(uint tokenId) public view returns (string memory) {
+        string memory svg;
+        svg = concatenateStrings("<svg width='300' height='100' xmlns='http://www.w3.org/2000/svg'><text x='150' y='50' font-family='Arial' font-size='10' text-anchor='middle'>",uint2str(block.timestamp),"</text></svg>");
+        return svg;
+    }    
+
+    function tokenURI(uint256 tokenId) override(ERC721) public view returns (string memory) {
+        string memory json = Base64.encode(
+            bytes(string(
+                abi.encodePacked(
+                    '{"name": "', attributes[tokenId].name, '",',
+                    '"image_data": "', getSvg(tokenId), '",',
+                    '"attributes": [{"trait_type": "Speed", "value": ', uint2str(attributes[tokenId].speed), '},',
+                    '{"trait_type": "Attack", "value": ', uint2str(attributes[tokenId].attack), '},',
+                    '{"trait_type": "Defence", "value": ', uint2str(attributes[tokenId].defence), '},',
+                    '{"trait_type": "Material", "value": "', attributes[tokenId].material, '"}',
+                    ']}'
+                )
+            ))
+        );
+        return string(abi.encodePacked('data:application/json;base64,', json));
+    }    
