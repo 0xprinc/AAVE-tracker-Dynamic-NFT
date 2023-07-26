@@ -18,5 +18,9 @@ The Holder can change the following three fields related to the NFT:
 
 ### To-Do
 - [x] Implement the Contract with onchain metadata
-- [x] Add 
+- [x] Add external call mechanism and plug it into Metadata
+- [x] Reading the data as unsigned Integer datatype
+- [x] Reading the data as an address datatype
+- [ ] Reading the data as a general datatype and plug it into the NFT
+- [ ] Make an AAVE `pool.sol/getUserData()` reading NFT Contract
 
