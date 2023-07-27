@@ -10,6 +10,7 @@ Example uses can be:
 - ...
 - Basically any data provided gasless by any protocol onchain can be catched inside this NFT :)
 
+
 ### Overview of the NFT Contract
 The Holder can change the following two fields related to the NFT:
 + The name of the NFT so as to recognize it among others
