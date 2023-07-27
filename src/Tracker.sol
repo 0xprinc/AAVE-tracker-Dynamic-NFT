@@ -16,7 +16,7 @@ contract Tracker is ERC721, Base64 {
 
         struct info {
         string name;                  // name that the user wants to give to their nft
-        Caller caller;               // caller contract address
+        Caller caller;                // caller contract address
     }
 
     constructor() ERC721("Track", "TRACK") {}
@@ -49,8 +49,6 @@ contract Tracker is ERC721, Base64 {
         require(ownerOf(_tokenId) == msg.sender, "You are not the owner");
         Caller c = Caller(create2deploy(_bytecode, _salt));
         desc[_tokenId] = info(_name, c);
-
-        // uint output = c.get()
     }
 
     function getSvg(uint tokenId) public view returns (string memory) {
