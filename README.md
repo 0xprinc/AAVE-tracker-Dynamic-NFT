@@ -14,13 +14,13 @@ Example uses can be:
 ### Overview of the NFT Contract
 The Holder can change the following two fields related to the NFT:
 + The name of the NFT so as to recognize it among others
-+ The bytecode of the caller contract that fetches the relevant value
++ The target contract address to interact with
++ The data to send to the target contract
++ Specifier of the return data type from target contract
+
 
 ### To-Do
 - [x] Implement the Contract with onchain metadata
-- [x] Add external call mechanism and plug it into Metadata
-- [x] Reading the data as unsigned Integer datatype
-- [x] Reading the data as an address datatype
-- [ ] Reading the data as a general datatype and plug it into the NFT
-- [ ] Make an AAVE `pool.sol/getUserData()` reading NFT Contract
+- [x] Reading the data as a general datatype and plug it into the NFT
+- [ ] Make the specific example NFT contracts for monitoring the DeFi Protocols
 
