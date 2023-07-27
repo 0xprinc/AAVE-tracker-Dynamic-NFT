@@ -11,10 +11,9 @@ Example uses can be:
 - Basically any data provided gasless by any protocol onchain can be catched inside this NFT :)
 
 ### Overview of the NFT Contract
-The Holder can change the following three fields related to the NFT:
+The Holder can change the following two fields related to the NFT:
 + The name of the NFT so as to recognize it among others
-+ The contract to which the NFT will interact with
-+ The data to send to the contract to interact with
++ The bytecode of the caller contract that fetches the relevant value
 
 ### To-Do
 - [x] Implement the Contract with onchain metadata
