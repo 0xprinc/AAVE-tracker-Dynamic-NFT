@@ -16,7 +16,7 @@ The Holder can change the following two fields related to the NFT:
 + The name of the NFT so as to recognize it among others
 + The target contract address to interact with
 + The data to send to the target contract
-+ Specifier of the return data type from target contract
++ Specifier of the return data type from target contract in the form of integer
 
 
 ### To-Do
