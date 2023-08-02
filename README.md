@@ -1,5 +1,5 @@
 # Dynamic-NFT
-This repo contains the code of the Dynamic Tracker NFT with Onchain Metadata.<br>
+This repo contains smart contracts of Dynamic Tracker NFT with Onchain Metadata.<br>
 __The NFT interacts onchain with other contracts so as to send and receive data as per set by the holder of that NFT.__
 Example uses can be:
 - Tracking the price of an asset by interacting with oracle
