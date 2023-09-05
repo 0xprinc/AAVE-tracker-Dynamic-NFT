@@ -23,4 +23,5 @@ The Holder can change the following two fields related to the NFT:
 - [x] Implement the Contract with onchain metadata
 - [x] Reading the data as a general datatype and plug it into the NFT
 - [ ] Make the specific example NFT contracts for monitoring the DeFi Protocols
+- [ ] Deploying on mainnet
 
